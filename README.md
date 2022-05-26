@@ -55,7 +55,8 @@ Full data dictionaries, including features not used for our analysis, can be fou
 <!--- - A full data dictionary for the IMDB datasets can be found [here](https://www.imdb.com/interfaces/)
 - A full data dictionary for the TMDB API can be found [here](https://developers.themoviedb.org/3/movies/get-movie-details) --->
 
-### Data SelectionThe following choices were made regarding whatdata to keep or cut for this study:
+### Data Selection
+The following choices were made regarding whatdata to keep or cut for this study:
 
 - Release Year: For the purposes of ourstudy limited the entries in our dataset to movies released from 2000 to thepresent. This timeframe was selected to give us a large enough sample size while also not extending so far into the past as to have different tastes/preferences. 
 - Genre: Documentaries were cut from thedataset at the request of our customer. Documentaries are often differ fromtraditional ‘entertainment’ films in terms of budget, revenue, ratings, etc which might have changed the shape of our data and impacted our analysis.
