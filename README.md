@@ -77,13 +77,13 @@ The work for this project was split into multiple JupyterNotebooks to keep indiv
 - [Phase 5](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/05_Hypothesis_Testing.ipynb): Use MySQL database to conduct hypothesis testing. 
 
 ## Results – Hypothesis Testing 
-### MPAA Rating Affect
+### MPAA Rating Effect
 Question:
 - Null Hypothesis: MPAA rating does not affect the revenue a movie generates.
 - Alternative Hypothesis: MPAA does affect the revenue a movie generates.
 - Alpha: 0.05
 
-### Genre Affect
+### Genre Effect
 Question:
 - Null Hypothesis:
 - Alternative Hypothesis:
@@ -95,7 +95,7 @@ Question:
 - Alternative Hypothesis: Movie runtime (length) has changed significantly since 2000.
 - Alpha: 0.05
 
-### Runtime Affect
+### Runtime Effect
 Question:
 - Null Hypothesis: Move length does not affect the revenue a movie generates.
 - Alternative Hypothesis: Movie length does affect the revenue a movie generates.
