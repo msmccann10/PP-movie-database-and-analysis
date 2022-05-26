@@ -20,7 +20,7 @@ A fictional customer is the newly appointed head of a production company. They w
 ### Data Sources
 The data for this project comes from two separate sources. These datasets were extracted, transformed, and loaded into a MySQL database for analysis as part of this project. Our data sources are as follows:
 - [IMDB's Publically Available Data](https://datasets.imdbws.com/): IMDB provides basic information and statistics on movies within their database from which we can pull a majority of the information needed for our analysis. 
-- [TMDB Moive Data](https://www.themoviedb.org/): Accessed through the [tmdbsimple API package](https://github.com/celiao/tmdbsimple) we were able to augment the data available on IMDB with financial information (budget, revenue) and MPAA rating.
+- [TMDB Moive Data](https://www.themoviedb.org/): Accessed through the [tmdbsimple](https://github.com/celiao/tmdbsimple) API package we were able to augment the data available on IMDB with financial information (budget, revenue) and MPAA rating.
 
 The original dataset has been stored in this repository and can be found [here](https://github.com/msmccann10/PP-movie-database-and-analysis/tree/main/data). The data was subsequently turned into a MySQL database for easier access and analysis.
 
@@ -50,6 +50,48 @@ The following features are referential for our MySQL database but will not appea
 |genre_id|numeric identifier representing film genres|numeric|
 |prodco_id|numeric identifier representing production companies|numeric|
 
-Features not used in our analysis can be found below:
-A full data dictionary for the IMDB datasets can be found [here](https://www.imdb.com/interfaces/)
-A full data dictionary for the TMDB API can be found [here](https://developers.themoviedb.org/3/movies/get-movie-details)
+Full data dictionaries, including features not used for our analysis, can be found at [IMDB](https://www.imdb.com/interfaces/) and [TMDB's](https://developers.themoviedb.org/3/movies/get-movie-details) respective websites.
+
+<!--- - A full data dictionary for the IMDB datasets can be found [here](https://www.imdb.com/interfaces/)
+- A full data dictionary for the TMDB API can be found [here](https://developers.themoviedb.org/3/movies/get-movie-details) --->
+
+### Data SelectionThe following choices were made regarding whatdata to keep or cut for this study:
+
+- Release Year: For the purposes of ourstudy limited the entries in our dataset to movies released from 2000 to thepresent. This timeframe was selected to give us a large enough sample sizewhile also not extending so far into the past as to have differenttastes/preferences. 
+- Genre: Documentaries were cut from thedataset at the request of our customer. Documentaries are often differ fromtraditional ‘entertainment’ films in terms of budget, revenue, ratings, etcwhich might have changed the shape of our data and impacted our analysis.
+- MPAA Rating: Our customer expressed an interestin movies rated G, PG, PG-13, and R, so movies that were either unrated orrated NC-17 were removed from our dataset. Unrated/NC-17 movies tend to be moreelicit or less reputable, things our customer is looking to avoid at this time. 
+
+### Data Validation
+Duplicates: Missing Values:Inconsistent Data: Minor changes were made to theMPAA Ratings and Outlet Size columns for consistency.MPAA Ratings: Multiple entries used to indicatethe same value (IE: ?? and ??). Some values included spaces or punctuationwhich were recoded for consistency.  
+
+### Caveats and Considerations
+The dataset documentation does not provide clearguidelines/definitions for the variables within Outlet Size, Outlet LocationType, and Outlet Type (IE: what constitutes a small vs large outlet, whatdifferentiates a supermarket type 1 from a supermarket type 3). These variablesare therefore taken at face value but will limit our ability to commentmeaningfully on location, size, and type of outlet. 
+
+## Methods
+The work for this project was split into multiple JupyterNotebooks to keep individual steps and processes distinct and separate. This was done to keep from re-running initial steps (ETL, cleaning) and to reducethe code and processing time for our analysis notebooks (hypothesis testing). The general workflow was as follows:
+- Phase 1: Download IMDB data. Inspect and cleanit based on our customers specifications. 
+- Phase 2: Build an API call for the TMDBdatabase. Retrieve data for 2000-2021. 
+- Phase 3: Clean TMDB
+- Phase 4: Create MySQL database using IMDB andTMDB data.
+- Phase 5: Use MySQL database to conduct hypothesis testing 
+
+## Results – Hypothesis Testing 
+### MPAA Rating Affect
+Null Hypothesis: MPAA rating does not affect the revenue a movie generates.
+Alternative Hypothesis: MPAA does affect the revenue a movie generates.
+Alpha: 0.05
+
+### Genre Affect
+
+
+### Runtime Trends
+Null Hypothesis: Movie runtime (length) has not changed significantly since 2000.
+Alternative Hypothesis: Movie runtime (length) has changed significantly since 2000.
+Alpha: 0.05
+
+### Runtime Affect
+Null Hypothesis: Move length does not affect the revenue a movie generates.
+Alternative Hypothesis: Movie length does affect the revenue a movie generates.
+Alpha: 0.05
+
+## Recommendations
