@@ -57,41 +57,47 @@ Full data dictionaries, including features not used for our analysis, can be fou
 
 ### Data SelectionThe following choices were made regarding whatdata to keep or cut for this study:
 
-- Release Year: For the purposes of ourstudy limited the entries in our dataset to movies released from 2000 to thepresent. This timeframe was selected to give us a large enough sample sizewhile also not extending so far into the past as to have differenttastes/preferences. 
-- Genre: Documentaries were cut from thedataset at the request of our customer. Documentaries are often differ fromtraditional ‘entertainment’ films in terms of budget, revenue, ratings, etcwhich might have changed the shape of our data and impacted our analysis.
-- MPAA Rating: Our customer expressed an interestin movies rated G, PG, PG-13, and R, so movies that were either unrated orrated NC-17 were removed from our dataset. Unrated/NC-17 movies tend to be moreelicit or less reputable, things our customer is looking to avoid at this time. 
+- Release Year: For the purposes of ourstudy limited the entries in our dataset to movies released from 2000 to thepresent. This timeframe was selected to give us a large enough sample size while also not extending so far into the past as to have different tastes/preferences. 
+- Genre: Documentaries were cut from thedataset at the request of our customer. Documentaries are often differ fromtraditional ‘entertainment’ films in terms of budget, revenue, ratings, etc which might have changed the shape of our data and impacted our analysis.
+- MPAA Rating: Our customer expressed an interestin movies rated G, PG, PG-13, and R, so movies that were either unrated orrated NC-17 were removed from our dataset. Unrated/NC-17 movies tend to be more elicit or less reputable, things our customer is looking to avoid at this time. 
 
 ### Data Validation
-Duplicates: Missing Values:Inconsistent Data: Minor changes were made to theMPAA Ratings and Outlet Size columns for consistency.MPAA Ratings: Multiple entries used to indicatethe same value (IE: ?? and ??). Some values included spaces or punctuationwhich were recoded for consistency.  
+Duplicates: Missing Values:Inconsistent Data: Minor changes were made to theMPAA Ratings and Outlet Size columns for consistency. MPAA Ratings: Multiple entries used to indicatethe same value (IE: ?? and ??). Some values included spaces or punctuation which were recoded for consistency.  
 
 ### Caveats and Considerations
-The dataset documentation does not provide clearguidelines/definitions for the variables within Outlet Size, Outlet LocationType, and Outlet Type (IE: what constitutes a small vs large outlet, whatdifferentiates a supermarket type 1 from a supermarket type 3). These variablesare therefore taken at face value but will limit our ability to commentmeaningfully on location, size, and type of outlet. 
+The dataset documentation does not provide clearguidelines/definitions for the variables within Outlet Size, Outlet LocationType, and Outlet Type (IE: what constitutes a small vs large outlet, what differentiates a supermarket type 1 from a supermarket type 3). These variables are therefore taken at face value but will limit our ability to commentmeaning fully on location, size, and type of outlet. 
 
 ## Methods
 The work for this project was split into multiple JupyterNotebooks to keep individual steps and processes distinct and separate. This was done to keep from re-running initial steps (ETL, cleaning) and to reducethe code and processing time for our analysis notebooks (hypothesis testing). The general workflow was as follows:
-- Phase 1: Download IMDB data. Inspect and cleanit based on our customers specifications. 
-- Phase 2: Build an API call for the TMDBdatabase. Retrieve data for 2000-2021. 
-- Phase 3: Clean TMDB
-- Phase 4: Create MySQL database using IMDB andTMDB data.
-- Phase 5: Use MySQL database to conduct hypothesis testing 
+- [Phase 1](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/01_IMDB_Data_Loading_and_Processing.ipynb): Download IMDB data. Inspect and cleanit based on our customers specifications. 
+- [Phase 2](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/02_TMDB_API_Pull.ipynb): Build an API call for the TMDBdatabase. Retrieve data for 2000-2021. 
+- [Phase 3](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/03_TMDB_Data_Consolidation_Processing_EDA.ipynb): Clean TMDB.
+- [Phase 4](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/04_MYSQL_Database_Creation.ipynb): Create MySQL database using IMDB andTMDB data.
+- [Phase 5](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/05_Hypothesis_Testing.ipynb): Use MySQL database to conduct hypothesis testing. 
 
 ## Results – Hypothesis Testing 
 ### MPAA Rating Affect
-Null Hypothesis: MPAA rating does not affect the revenue a movie generates.
-Alternative Hypothesis: MPAA does affect the revenue a movie generates.
-Alpha: 0.05
+Question:
+- Null Hypothesis: MPAA rating does not affect the revenue a movie generates.
+- Alternative Hypothesis: MPAA does affect the revenue a movie generates.
+- Alpha: 0.05
 
 ### Genre Affect
-
-
+Question:
+- Null Hypothesis:
+- Alternative Hypothesis:
+- Alpha: 0.05
+- 
 ### Runtime Trends
-Null Hypothesis: Movie runtime (length) has not changed significantly since 2000.
-Alternative Hypothesis: Movie runtime (length) has changed significantly since 2000.
-Alpha: 0.05
+Question:
+- Null Hypothesis: Movie runtime (length) has not changed significantly since 2000.
+- Alternative Hypothesis: Movie runtime (length) has changed significantly since 2000.
+- Alpha: 0.05
 
 ### Runtime Affect
-Null Hypothesis: Move length does not affect the revenue a movie generates.
-Alternative Hypothesis: Movie length does affect the revenue a movie generates.
-Alpha: 0.05
+Question:
+- Null Hypothesis: Move length does not affect the revenue a movie generates.
+- Alternative Hypothesis: Movie length does affect the revenue a movie generates.
+- Alpha: 0.05
 
 ## Recommendations
