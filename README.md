@@ -1,6 +1,6 @@
 # **Movie Database and Analysis**
 
-**Author:** Michael McCann
+**Author:** Michael McCann <br>
 **Late Updated:** 21 MAY 2022
 ___
 
