@@ -83,19 +83,29 @@ Question:
 - Alternative Hypothesis: MPAA does affect the revenue a movie generates.
 - Alpha: 0.05
 
+![](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/images/ratings%20by%20revenue.png)
+
 ### Genre Effect
 Question:
 - Null Hypothesis:
 - Alternative Hypothesis:
 - Alpha: 0.05
 
-![]("images/genre tukey.png")
+![](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/images/genre%20tukey.png)
+
+![](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/images/revenue%20by%20genre.png)
 
 ### Runtime Trends
 Question:
 - Null Hypothesis: Movie runtime (length) has not changed significantly since 2000.
 - Alternative Hypothesis: Movie runtime (length) has changed significantly since 2000.
 - Alpha: 0.05
+
+![](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/images/runtime%20tukey.png)
+
+![](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/images/runtime%20by%20year%20full.png)
+![](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/images/runtime%20by%20year%20zoom.png)
+
 
 ### Runtime Effect
 Question:
