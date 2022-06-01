@@ -1,7 +1,7 @@
 # **Movie Database and Analysis**
 
 **Author:** Michael McCann <br>
-**Late Updated:** 21 MAY 2022
+**Late Updated:** 31 MAY 2022
 ___
 
 ## Overview
@@ -49,6 +49,9 @@ The following features are referential for our MySQL database but will not appea
 |tconst|alphanumeric unique identifier of the title|string|
 |genre_id|numeric identifier representing film genres|numeric|
 |prodco_id|numeric identifier representing production companies|numeric|
+
+Engineered features
+Adjusted for Inflation: https://www.bls.gov/data/inflation_calculator.htm
 
 Full data dictionaries, including features not used for our analysis, can be found at [IMDB](https://www.imdb.com/interfaces/) and [TMDB's](https://developers.themoviedb.org/3/movies/get-movie-details) respective websites.
 
