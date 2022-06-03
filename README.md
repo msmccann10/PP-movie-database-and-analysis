@@ -1,7 +1,7 @@
-# **MovieDatabase and Analysis**
+# **Movie Database and Analysis**
 
 **Author:** Michael McCann <br>
-**Late Updated:** 01 JUN 2022
+**Late Updated:** 03 JUN 2022
 ___
 
 ## Overview
@@ -58,7 +58,7 @@ The following choices were made regarding what data to keep or cut for this stud
 Entries into TMDB are user generated/crowdsourced which means that we are relying on users to accurately input data on the movies we use in our study. This could be especially problematic for movies that are less popular or more niche. I also was unable to find how TMDB handled financial information for movies that were released straight to video/dvd/streaming which are obviously different than movies released in theaters. 
 
 ## Methods
-The work for this project was split into multiple Jupyter Notebooks to keepindividual steps and processes distinct and separate. This was done to keepfrom re-running initial steps (ETL, cleaning) and to reduce the code andprocessing time for our analysis notebooks (hypothesis testing). Thegeneral workflow was as follows:
+The work for this project was split into multiple Jupyter Notebooks to keepindividual steps and processes distinct and separate. This was done to keep from re-running initial steps (ETL, cleaning) and to reduce the code andprocessing time for our analysis notebooks (hypothesis testing). Thegeneral workflow was as follows:
 - [Phase 1](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/01_Extract_and_Transform.ipynb): Download, inspect, and clean IMDB data. Build an API call for the TMDBdatabase. Retrieve, inspect, and clean TMDB data. Conduct initial EDA.
 - [Phase 2](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/02_MYSQL_Database_Creation.ipynb): Create MySQL database using IMDB and TMDB data.
 - [Phase 5](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/03_Hypothesis_Testing.ipynb): Use MySQL database to conduct hypothesis testing. 
@@ -66,26 +66,54 @@ The work for this project was split into multiple Jupyter Notebooks to keepindiv
 ## Results – Hypothesis Testing 
 ### MPAA Rating Effect
 Question: Does movie rating (G, PG, PG-13, R) have any affect on the profits it generates?
-- Null Hypothesis: MPAA rating does not affect the profit a movie generates.
-- Alternative Hypothesis: MPAA does affect the profit a movie generates.
+- Null Hypothesis ($H_0$): MPAA rating does not affect the profit a movie generates.
+- Alternative Hypothesis ($H_A$): MPAA does affect the profit a movie generates.
 - Alpha: 0.05
 
-![](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/images/ratings%20by%20revenue.png)
+Distribution of MPAA Rating 
+<img src="./images//ratings dist.png"  width=80%>
+
+Since we are looking at numeric data (profit) with more than two groups (MPAA rating) we will want to preform a one way ANOVA test. In order to conduct a one way ANOVA we need to check the following assumptions: 
+- No significant outliers: 92 outliers were found in the dataset and removed prior to hypothesis testing.
+- Normailty of data: The data failed to meet the assumption of Normality based on Shapiro's test. However, due to the size of our dataset this result can be ignored.  
+- Equal Variance: The data fails to meet the assumption of equal variance based on the Levene test. 
+
+Because our data fails the equal variance assumption it is considered nonparametric and we used the Kruskal-Wallis test instead of the one way ANOVA.
+- Wallis-Kruskal Test Statisitic: 237.4911335418493
+- Wallis-Kruskal P-Value: 3.3192244972428306e-51
+
+The results of our Wallis Kruskal test yielded a p-value less than our alpha value of 0.05. We reject the null hypothesis that MPAA rating does not affect the profit of a movie. Further analysis indicates that G, PG, and PG-13 rated movies have fairly similar mean profit values whereas R rated movies do significantly worse.
+
+<img src="./images//ratings by revenue.png"  width=80%>
 
 ### Genre Effect
 Question: Do some movie genres make more profit than others?  
-- Null Hypothesis: Genre does not affect the profit a movie generates
-- Alternative Hypothesis: Genre does affect the profit a movie generates
+- Null Hypothesis ($H_0$): Genre does not affect the profit a movie generates
+- Alternative Hypothesis ($H_A$): Genre does affect the profit a movie generates
 - Alpha: 0.05
 
-![](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/images/genre%20tukey.png)
+Distribution of MPAA Rating 
+<img src="./images//genre dist.png"  width=80%>
 
-![](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/images/revenue%20by%20genre.png)
+Since we are looking at numeric data (runtime) with more than two groups (genre) we will want to preform a one way ANOVA test. In order to conduct a one way ANOVA we need to check the following assumptions: 
+- No significant outliers: 291 outliers were found in the dataset and removed prior to hypothesis testing.
+- Normailty of data: The data failed to meet the assumption of Normality based on Shapiro's test. However, due to the size of our dataset this result can be ignored.  
+- Equal Variance: The data fails to meet the assumption of equal variance based on the Levene test. 
+
+Because our data fails the equal variance assumption it is considered nonparametric and we used the Kruskal-Wallis test instead of the one way ANOVA.
+- Wallis-Kruskal Test Statisitic: 570.9538320414558
+- Wallis-Kruskal P-Value: 6.726215671699646e-109
+
+The results of our Wallis Kruskal test yielded a p-value less than our alpha value of 0.05. We reject the null hypothesis that move genre does not affect the profit of a movie. Further analysis indicates that movies in the adventure, sci-fi, and animation genres do best with an average profit above $175 million, and movies in the action, fantasy, and family genres also do well with an average profit over $100 million. Likewise, movies in the history, sports, war, and western genres do the worst with average profit below or near $25 million.
+
+<img src="./images//genre tukey.png"  width=80%>
+
+<img src="./images//revenue by genre.png"  width=80%>
 
 ### Runtime Trends
 Question: Annecdotaly it feels as if movies have gotten longer... Have movies in fact gotten longer in the past 20 years?
-- Null Hypothesis: Movie runtime (length) has not changed significantly since 2000.
-- Alternative Hypothesis: Movie runtime (length) has changed significantlysince 2000.
+- Null Hypothesis ($H_0$): Movie runtime (length) has not changed significantly since 2000.
+- Alternative Hypothesis ($H_A$): Movie runtime (length) has changed significantlysince 2000.
 - Alpha: 0.05
 
 ![](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/images/runtime%20tukey.png)
@@ -96,8 +124,8 @@ Question: Annecdotaly it feels as if movies have gotten longer... Have movies in
 
 ### Runtime Effect
 Question: Does movie length matter when it comes to the profit of a movie? 
-- Null Hypothesis: Move length does not affect the profit a movie generates.
-- Alternative Hypothesis: Movie length does affect the profit a moviegenerates.
+- Null Hypothesis ($H_0$): Move length does not affect the profit a movie generates.
+- Alternative Hypothesis ($H_A$): Movie length does affect the profit a moviegenerates.
 - Alpha: 0.05
 
 ## Recommendations
