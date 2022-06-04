@@ -16,13 +16,13 @@ A fictional customer is the newly appointed head of a production company. They w
 ## Data
 ### Data Sources
 The data for this project comes from two separate sources. These datasets were extracted, transformed, and loaded into a MySQL database for analysis as part of this project. Our data sources are as follows:
-- [IMDB's Publically Available Data](https://datasets.imdbws.com/): IMDB provides basic information and statistics on movies within their databasefrom which we can pull a majority of the information needed for our analysis. 
+- [IMDB's Publicly Available Data](https://datasets.imdbws.com/): IMDB provides basic information and statistics on movies within their database from which we can pull a majority of the information needed for our analysis. 
 - [TMDB Movie Data](https://www.themoviedb.org/): Accessed through the [tmdbsimple](https://github.com/celiao/tmdbsimple) API package we were able to augment the data available on IMDB with financial information (budget, revenue) and MPAA rating.
 
-The original dataset has been stored in this repository and can be found [here](https://github.com/msmccann10/PP-movie-database-and-analysis/tree/main/data).The data was subsequently turned into a MySQL database for easier access and analysis.
+The original dataset has been stored in this repository and can be found [here](https://github.com/msmccann10/PP-movie-database-and-analysis/tree/main/data). The data was subsequently turned into a MySQL database for easier access and analysis.
 
 ### Data Dictionary
-We used the following features from the IMDB and TMDB databases for ouranalysis. 
+We used the following features from the IMDB and TMDB databases for our analysis. 
 
 |Feature|Description|Source|Type|
 |---|---|---|---|
@@ -40,32 +40,32 @@ We used the following features from the IMDB and TMDB databases for ouranalysis.
 |profit_adj|difference between revenue and budget (adjusted to 2021 dollars[^1])|Engineered - TMDB|numeric|
 |belongs_to_collection|Represents if a film is part of a series or a stand alone|Engineered - TMDB|boolean|
 
-[^1]: adjustments to the budget, revenue, and profit made based on the [U.S.Bureau of Labor Statistics Consumer Price Index Inflation Calculator](https://www.bls.gov/data/inflation_calculator.htm)
+[^1]: adjustments to the budget, revenue, and profit made based on the [U.S. Bureau of Labor Statistics Consumer Price Index Inflation Calculator](https://www.bls.gov/data/inflation_calculator.htm)
 
-"tconst", "genre_id", and "prodco_id" appear aspart of our SQL database as primary/secondary keys and do not appear in our analysis, hypothesis testing, or modeling.
+"tconst", "genre_id", and "prodco_id" appear as part of our SQL database as primary/secondary keys and do not appear in our analysis, hypothesis testing, or modeling.
 
-Full data dictionaries, including features not used for our analysis, can befound at [IMDB](https://www.imdb.com/interfaces/) and [TMDB's](https://developers.themoviedb.org/3/movies/get-movie-details) respective websites.
+Full data dictionaries, including features not used for our analysis, can be found at [IMDB](https://www.imdb.com/interfaces/) and [TMDB's](https://developers.themoviedb.org/3/movies/get-movie-details) respective websites.
 
 ### Data Selection
 The following choices were made regarding what data to keep or cut for this study:
 
 - Release Year: For our study, we limited the entries in our dataset to movies released from 2000 to 2021. This timeframe was selected to give us a large enough sample size while also not extending so far into the past as to have different tastes/preferences (IE: general preferences were different between the 1970s and now). 
-- Genre: Documentaries were removed from the dataset at the request of ourcustomer. Documentaries often differ from traditional ‘entertainment’ films in terms of budget, revenue, ratings, etc which might have changed the shape of our data and impacted our analysis.
+- Genre: Documentaries were removed from the dataset at the request of our customer. Documentaries often differ from traditional ‘entertainment’ films in terms of budget, revenue, ratings, etc which might have changed the shape of our data and impacted our analysis.
 - MPAA Rating: Our customer expressed an interest in movies rated G, PG, PG-13, and R, suggesting that unrated/NC-17 movies might be more elicit or less reputable. For this reason, movies that were either unrated or rated NC-17 were excluded from our analysis but were kept in our database for future use. 
 - Budget/Revenue: Movies without budget or revenue information were excluded from our analysis but were kept in our database for future use.
 
 ### Caveats and Considerations
-Entries into TMDB are user generated/crowdsourced which means that we are relying on users to accurately input data on the movies we use in our study. This could be especially problematic for movies that are less popular or more niche. I also was unable to find how TMDB handled financial information for movies that were released straight to video/dvd/streaming which are obviously different than movies released in theaters. 
+Entries into TMDB are user-generated/crowdsourced which means that we are relying on users to accurately input data on the movies we use in our study. This could be especially problematic for movies that are less popular or more niche. I also was unable to find how TMDB handled financial information for movies that were released straight to video/DVD/streaming which are different than movies released in theaters. 
 
 ## Methods
-The work for this project was split into multiple Jupyter Notebooks to keepindividual steps and processes distinct and separate. This was done to keep from re-running initial steps (ETL, cleaning) and to reduce the code andprocessing time for our analysis notebooks (hypothesis testing). Thegeneral workflow was as follows:
-- [Phase 1](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/01_Extract_and_Transform.ipynb): Download, inspect, and clean IMDB data. Build an API call for the TMDBdatabase. Retrieve, inspect, and clean TMDB data. Conduct initial EDA.
+The work for this project was split into multiple Jupyter Notebooks to keep individual steps and processes distinct and separate. This was done to keep from re-running initial steps (ETL, cleaning) and to reduce the code and processing time for our analysis notebooks (hypothesis testing). The general workflow was as follows:
+- [Phase 1](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/01_Extract_and_Transform.ipynb): Download, inspect, and clean IMDB data. Build an API call for the TMDB database. Retrieve, inspect, and clean TMDB data. Conduct initial EDA.
 - [Phase 2](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/02_MYSQL_Database_Creation.ipynb): Create MySQL database using IMDB and TMDB data.
 - [Phase 5](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/03_Hypothesis_Testing.ipynb): Use MySQL database to conduct hypothesis testing. 
 
 ## Results – Hypothesis Testing 
 ### MPAA Rating Effect
-Question: Does movie rating (G, PG, PG-13, R) have any affect on the profits it generates?
+Question 1: Does movie rating (G, PG, PG-13, R) have any effect on the profits it generates?
 - Null Hypothesis ($H_0$): MPAA rating does not affect the profit a movie generates.
 - Alternative Hypothesis ($H_A$): MPAA does affect the profit a movie generates.
 - Alpha: 0.05
@@ -73,21 +73,21 @@ Question: Does movie rating (G, PG, PG-13, R) have any affect on the profits it 
 Distribution of MPAA Rating 
 <img src="./images//ratings dist.png"  width=80%>
 
-Since we are looking at numeric data (profit) with more than two groups (MPAA rating) we will want to preform a one way ANOVA test. In order to conduct a one way ANOVA we need to check the following assumptions: 
-- No significant outliers: 92 outliers were found in the dataset and removed prior to hypothesis testing.
-- Normailty of data: The data failed to meet the assumption of Normality based on Shapiro's test. However, due to the size of our dataset this result can be ignored.  
+Since we are looking at numeric data (profit) with more than two groups (MPAA rating) we will want to perform a one-way ANOVA test. To conduct a one-way ANOVA we need to check the following assumptions: 
+- No significant outliers: 92 outliers were found in the dataset and removed before hypothesis testing.
+- Normality of data: The data failed to meet the assumption of Normality based on Shapiro's test. However, due to the size of our dataset, this result can be ignored.
 - Equal Variance: The data fails to meet the assumption of equal variance based on the Levene test. 
 
-Because our data fails the equal variance assumption it is considered nonparametric and we used the Kruskal-Wallis test instead of the one way ANOVA.
-- Wallis-Kruskal Test Statisitic: 237.4911335418493
-- Wallis-Kruskal P-Value: 3.3192244972428306e-51
+Because our data fails the equal variance assumption it is considered nonparametric and we used the Kruskal-Wallis test instead of the one-way ANOVA.
+- Wallis-Kruskal Test Statistic: 237.49
+- Wallis-Kruskal P-Value: 3.32e-51
 
-The results of our Wallis Kruskal test yielded a p-value less than our alpha value of 0.05. We reject the null hypothesis that MPAA rating does not affect the profit of a movie. Further analysis indicates that G, PG, and PG-13 rated movies have fairly similar mean profit values whereas R rated movies do significantly worse.
+The results of our Wallis-Kruskal test yielded a p-value less than our alpha value of 0.05. We reject the null hypothesis that the MPAA rating does not affect the profit of a movie. Further analysis indicates that G, PG, and PG-13 rated movies have fairly similar mean profit values whereas R-rated movies do significantly worse.
 
 <img src="./images//ratings by revenue.png"  width=80%>
 
 ### Genre Effect
-Question: Do some movie genres make more profit than others?  
+Question 2: Do some movie genres make more profit than others?  
 - Null Hypothesis ($H_0$): Genre does not affect the profit a movie generates
 - Alternative Hypothesis ($H_A$): Genre does affect the profit a movie generates
 - Alpha: 0.05
@@ -95,23 +95,23 @@ Question: Do some movie genres make more profit than others?
 Distribution of genres <br>
 <img src="./images//genre dist.png"  width=80%>
 
-Since we are looking at numeric data (profit) with more than two groups (genre) we will want to preform a one way ANOVA test. In order to conduct a one way ANOVA we need to check the following assumptions: 
-- No significant outliers: 291 outliers were found in the dataset and removed prior to hypothesis testing.
-- Normailty of data: The data failed to meet the assumption of Normality based on Shapiro's test. However, due to the size of our dataset this result can be ignored.  
+Since we are looking at numeric data (profit) with more than two groups (genre) we will want to perform a one-way ANOVA test. To conduct a one-way ANOVA we need to check the following assumptions: 
+- No significant outliers: 291 outliers were found in the dataset and removed before hypothesis testing.
+- Normality of data: The data failed to meet the assumption of Normality based on Shapiro's test. However, due to the size of our dataset, this result can be ignored.
 - Equal Variance: The data fails to meet the assumption of equal variance based on the Levene test. 
 
-Because our data fails the equal variance assumption it is considered nonparametric and we used the Kruskal-Wallis test instead of the one way ANOVA.
-- Wallis-Kruskal Test Statisitic: 570.9538320414558
-- Wallis-Kruskal P-Value: 6.726215671699646e-109
+Because our data fails the equal variance assumption it is considered nonparametric and we used the Kruskal-Wallis test instead of the one-way ANOVA.
+- Wallis-Kruskal Test Statistic: 570.95
+- Wallis-Kruskal P-Value: 6.73e-109
 
-The results of our Wallis Kruskal test yielded a p-value less than our alpha value of 0.05. We reject the null hypothesis that movie genre does not affect the profit of a movie. Further analysis indicates that movies in the adventure, sci-fi, and animation genres do best with an average profit above $175 million, and movies in the action, fantasy, and family genres also do well with an average profit over $100 million. Likewise, movies in the history, sports, war, and western genres do the worst with average profit below or near $25 million.
+The results of our Wallis Kruskal test yielded a p-value less than our alpha value of 0.05. We reject the null hypothesis that movie genre does not affect the profit of a movie. Further analysis indicates that movies in the adventure, sci-fi and animation genres do best with an average profit above $175 million, and movies in the action, fantasy, and family genres also do well with an average profit over $100 million. Likewise, movies in the history, sports, war, and western genres do the worst with a mean profit below or near $25 million.
 
 <img src="./images//genre tukey.png"  width=80%>
 
 <img src="./images//revenue by genre.png"  width=80%>
 
 ### Runtime Trends
-Question: Annecdotaly it feels as if movies have gotten longer... Have movies in fact gotten longer in the past 20 years?
+Question 3: Anecdotally, it feels as if movies have gotten longer... Have movies gotten longer in the past 20 years?
 - Null Hypothesis ($H_0$): Movie runtime (length) has not changed significantly since 2000.
 - Alternative Hypothesis ($H_A$): Movie runtime (length) has changed significantly since 2000.
 - Alpha: 0.05
@@ -119,28 +119,45 @@ Question: Annecdotaly it feels as if movies have gotten longer... Have movies in
 Distribution of runtimes <br>
 <img src="./images/runtime dist.png"  width=80%>
 
-Since we are looking at numeric data (runtime) with more than two groups (year) we will want to preform a one way ANOVA test. In order to conduct a one way ANOVA we need to check the following assumptions: 
-- No significant outliers: 50 outliers were found in the dataset and removed prior to hypothesis testing.
-- Normailty of data: The data failed to meet the assumption of Normality based on Shapiro's test. However, due to the size of our dataset this result can be ignored.  
+Since we are looking at numeric data (runtime) with more than two groups (year) we will want to perform a one-way ANOVA test. To conduct a one-way ANOVA we need to check the following assumptions: 
+- No significant outliers: 50 outliers were found in the dataset and removed before hypothesis testing.
+- Normality of data: The data failed to meet the assumption of Normality based on Shapiro's test. However, due to the size of our dataset, this result can be ignored.
 - Equal Variance: The data fails to meet the assumption of equal variance based on the Levene test. 
 
-Because our data fails the equal variance assumption it is considered nonparametric and we used the Kruskal-Wallis test instead of the one way ANOVA.
-- Wallis-Kruskal Test Statisitic: 67.2979742920653
-- Wallis-Kruskal P-Value: 9.463630598024268e-07
+Because our data fails the equal variance assumption it is considered nonparametric and we used the Kruskal-Wallis test instead of the one-way ANOVA.
+- Wallis-Kruskal Test Statistic: 67.30
+- Wallis-Kruskal P-Value: 9.46e-07
 
-The results of our Wallis Kruskal test yielded a p-value less than our alpha value of 0.05. We reject the null hypothesis that mmovie runtime has not changed significantly since 2000. Follow on analysis reveals that the mean runtime each year remained below the cumulative mean runtime from 2000 to 2012. However, since 2012 every year has had an average runtime above the cumulative mean except for 2014 and 2020. Futher, every year since 2015 has had a mean runtime greater than the year prior (except for 2020) showing a gradual upwards trajectory in mean movie runtime. 
+The results of our Wallis Kruskal test yielded a p-value less than our alpha value of 0.05. We reject the null hypothesis that movie runtime has not changed significantly since 2000. Follow on analysis reveals that the mean runtime each year remained below the cumulative mean runtime from 2000 to 2012. However, since 2012 every year has had an average runtime above the cumulative mean except for 2014 and 2020. Further, every year since 2015 has had a mean runtime greater than the year prior (except for 2020) showing a gradual upwards trajectory in mean movie runtime. 
 
 <img src="./images/runtime tukey.png"  width=80%>
 
 <img src="./images/runtime by year full.png"  width=80%>
 <img src="./images/runtime by year zoom.png"  width=80%>
 
-
-
 ### Runtime Effect
-Question: Does movie length matter when it comes to the profit of a movie? 
-- Null Hypothesis ($H_0$): Move length does not affect the profit a movie generates.
-- Alternative Hypothesis ($H_A$): Movie length does affect the profit a moviegenerates.
+Question 4: Do shorter or longer movies perform better?  
+- Null Hypothesis ($H_0$): Short and long movies perform equally well / generate the same amount of profit.
+- Alternative Hypothesis ($H_A$): Short and long movies perform differently / generate different amounts of profit.
 - Alpha: 0.05
 
+Since we are looking at numeric data (profit) compared between two groups (short vs long movies) we will want to perform a 2 sample T-test. For this test, we divided our data at the mean runtime with movies above the mean classified as long, and those below the mean classified as short.  To conduct a one-way ANOVA we need to check the following assumptions: 
+- No significant outliers: 122 outliers were found in the dataset and removed before hypothesis testing.
+- Normality of data: The data failed to meet the assumption of Normality based on Shapiro's test. However, due to the size of our dataset, this result can be ignored.
+- Equal Variance: The data fails to meet the assumption of equal variance based on the Levene test.
+
+Despite failing to meet the assumption of normality and equal variance we can still carry out a 2 sample T-Test with the equal_var argument set to False. 
+- 2 Sample T-Test Statistic: 9.48
+- 2 Sample T-Test P-Value: 4.97e-21
+
+The results of our 2 Sample T-Test yielded a p-value less than our alpha value of 0.05. We reject the null hypothesis that short and long movies do equally well. Follow on analysis shows that movies over the mean runtime (108 minutes) have a mean difference of $50 million in profit.  
+
+<img src="./images/Profits long short.png"  width=80%>
+
+Splitting runtimes up into groups of 5 and 10 minutes and comparing the mean profit for those groupings indicates that profits appear to increase up until a runtime of approximately 150 minutes. After 150 minutes this trend appears to gradually decrease (with a few outliers) possibly indicating that there are diminishing returns past the 150-minute mark. 
+
 ## Recommendations
+Based on these findings I would recommend to our customers that they focus on movies that:
+- Are rated PG or PG-13, avoiding an R rating if at all possible.
+- Are in the genres of adventure, sci-fi, or animation. A Secondary consideration for the action, fantasy, and family genres
+- Between 110 and 150 minutes. Movies are getting longer, but there are diminishing returns beyond the 150-minute mark.
