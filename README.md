@@ -61,7 +61,7 @@ Entries into TMDB are user-generated/crowdsourced which means that we are relyin
 The work for this project was split into multiple Jupyter Notebooks to keep individual steps and processes distinct and separate. This was done to keep from re-running initial steps (ETL, cleaning) and to reduce the code and processing time for our analysis notebooks (hypothesis testing). The general workflow was as follows:
 - [Phase 1](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/01_Extract_and_Transform.ipynb): Download, inspect, and clean IMDB data. Build an API call for the TMDB database. Retrieve, inspect, and clean TMDB data. Conduct initial EDA.
 - [Phase 2](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/02_MYSQL_Database_Creation.ipynb): Create MySQL database using IMDB and TMDB data.
-- [Phase 5](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/03_Hypothesis_Testing.ipynb): Use MySQL database to conduct hypothesis testing. 
+- [Phase 3](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/03_Hypothesis_Testing.ipynb): Use MySQL database to conduct hypothesis testing. 
 
 ## Results – Hypothesis Testing 
 ### MPAA Rating Effect
