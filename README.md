@@ -161,3 +161,8 @@ Based on these findings I would recommend to our customers that they focus on mo
 - Are rated PG or PG-13, avoiding an R rating if at all possible.
 - Are in the genres of adventure, sci-fi, or animation. A Secondary consideration for the action, fantasy, and family genres
 - Between 110 and 150 minutes. Movies are getting longer, but there are diminishing returns beyond the 150-minute mark.
+
+## For More Information
+Please review my full analysis in my [Jupyter Notebook](https://github.com/msmccann10/PP-movie-database-and-analysis/blob/main/03_Hypothesis_Testing.ipynb).
+
+For any additional questions, please contact **Michael McCann**, [**msmccann10@gmail.com**](mailto:msmccann10@gmail.com).
